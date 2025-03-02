@@ -27,4 +27,4 @@ ax^2 + bx + c = 0
 
 ## Revert-коміт
 
-Було зроблено revert-коміт для скасування непотрібної зміни. Ідентифікатор коміту: `b9177040ade02fc40b5358bb24c07b11cf8b6c6a`.
+Було зроблено revert-коміт для скасування непотрібної зміни. Ідентифікатор коміту: [b9177040ade02fc40b5358bb24c07b11cf8b6c6a](https://github.com/VaL2111/Lab1_Quadratic_Equation_Solver/commit/b9177040ade02fc40b5358bb24c07b11cf8b6c6a).
