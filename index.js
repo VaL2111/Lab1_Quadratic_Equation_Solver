@@ -109,3 +109,5 @@ function showResult(resultMessage, errorMessage) {
     resultDiv.innerHTML = `<p>${resultMessage}</p>`;
   }
 }
+
+console.log("For the revert-commit");
