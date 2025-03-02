@@ -1,5 +1,6 @@
 const equationForm = document.getElementById("equationForm");
 const resultDiv = document.getElementById("result");
+const solveFileBtn = document.getElementById("solve-file-btn");
 
 equationForm.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -10,6 +11,60 @@ equationForm.addEventListener("submit", (e) => {
 
   solveEquation(a, b, c);
 });
+
+solveFileBtn.addEventListener("click", () => {
+  const fileInput = document.getElementById("file");
+  const file = fileInput.files[0];
+
+  if (!file) {
+    showResult(false, "Error: File not picked");
+    return;
+  }
+
+  const render = new FileReader();
+
+  render.onload = (e) => {
+    try {
+      const content = e.target.result;
+      parseFileAndSolve(content);
+    } catch (error) {
+      showResult(false, `Error: ${error.message}`);
+    }
+  };
+
+  render.onerror = () => {
+    showResult(false, "Error: Could not read the file");
+  };
+
+  render.readAsText(file);
+});
+
+function parseFileAndSolve(content) {
+  const lines = content.split("\n");
+
+  if (lines.length < 1 || lines[0].trim() === "") {
+    showResult(false, "Error: invalid file format");
+    return;
+  }
+
+  const coefficients = lines[0].trim().split(" ");
+
+  if (coefficients.length !== 3) {
+    showResult(false, "Error: invalid file format");
+    return;
+  }
+
+  const a = parseFloat(coefficients[0]);
+  const b = parseFloat(coefficients[1]);
+  const c = parseFloat(coefficients[2]);
+
+  if (isNaN(a) || isNaN(b) || isNaN(c)) {
+    showResult(false, "Error: invalid file format");
+    return;
+  }
+
+  solveEquation(a, b, c);
+}
 
 function solveEquation(a, b, c) {
   if (a === 0) {
